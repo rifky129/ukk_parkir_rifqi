@@ -1,6 +1,6 @@
 <?php
-define('BASE_URL', 'http://localhost/parkir/public');
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'db_parkir');
+define('BASE_URL', 'https://rifqi-alamsyah-parkir2.infinityfreeapp.com/parkir/public');
+define('DB_HOST', 'sql100.infinityfree.com');
+define('DB_USER', 'if0_41551632');
+define('DB_PASS', 'bAEZjaTb2YQi');
+define('DB_NAME', 'if0_41551632_db_ukk2_rifkyalamsyah12rpl2');

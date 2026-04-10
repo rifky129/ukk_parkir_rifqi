@@ -44,4 +44,44 @@ class AuthController extends Controller {
         }
         $this->redirect('auth/index');
     }
+
+    public function register() {
+        if (isset($_SESSION['user_parkir'])) {
+            $this->redirect($_SESSION['user_parkir']['role'] . '/index');
+        }
+        $data['title'] = 'Register - Parkir APP';
+        $this->view('templates/header', $data);
+        $this->view('auth/register', $data);
+        $this->view('templates/footer');
+    }
+
+    public function proses_register() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $data = [
+                'nama_lengkap' => trim($_POST['nama_lengkap']),
+                'username' => trim($_POST['username']),
+                'password' => $_POST['password'],
+                'role' => 'petugas', // Default role untuk registrasi eksternal
+                'status_aktif' => 1   // Akun langsung aktif
+            ];
+
+            // Cek apakah username sudah ada
+            $userExist = $this->model('UserModel')->checkUsername($data['username']);
+            if ($userExist) {
+                $_SESSION['error'] = 'Username sudah terdaftar! Silakan gunakan username lain.';
+                $this->redirect('auth/register');
+                return;
+            }
+
+            if ($this->model('UserModel')->insertUser($data)) {
+                $_SESSION['success'] = 'Registrasi berhasil! Silakan login dengan akun Anda.';
+                $this->redirect('auth/index');
+            } else {
+                $_SESSION['error'] = 'Gagal melakukan registrasi sistem.';
+                $this->redirect('auth/register');
+            }
+        } else {
+            $this->redirect('auth/register');
+        }
+    }
 }

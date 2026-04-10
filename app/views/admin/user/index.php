@@ -28,6 +28,13 @@
                     <option value="petugas" style="background:#1e293b;">Petugas</option>
                     <option value="owner" style="background:#1e293b;">Owner</option>
                 </select>
+    			<div>
+                <label style="display:block; margin-bottom:5px; color:var(--text-muted);">Status Akun</label>
+                <select name="status_aktif" required style="width:100%; padding:10px; border-radius:5px; background:rgba(0,0,0,0.2); border:1px solid var(--border-color); color:#fff;">
+                    <option value="1" style="background:#1e293b;">Aktif</option>
+                    <option value="0" style="background:#1e293b;">Non-aktif</option>
+                </select>
+            </div>
             </div>
         </div>
         <button type="submit" class="btn-primary">Simpan User</button>
